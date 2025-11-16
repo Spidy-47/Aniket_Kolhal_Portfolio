@@ -4,13 +4,13 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const phone = document.getElementById('phone').value.trim();
-    const subject = document.getElementById('subject').value.trim();
+    const user_subject = document.getElementById('subject').value.trim();
     const message = document.getElementById('message').value.trim();
     const status = document.getElementById('status');
 
     status.className = "";
 
-    // VALIDATIONS ------------------------------
+    
     if (!name || !email || !phone || !subject || !message) {
         status.textContent = 'Please fill in all required fields.';
         status.className = 'error show';
@@ -47,12 +47,12 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
         return;
     }
 
-    // EMAILJS SEND ------------------------------
+   
     const params = {
         name: name,
         email: email,
         phone: phone,
-        subject: subject,
+        user_subject: user_subject,
         message: message
     };
 
