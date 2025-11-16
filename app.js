@@ -10,8 +10,8 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
 
     status.className = "";
 
-    
-    if (!name || !email || !phone || !subject || !message) {
+    // FIXED HERE ↓↓↓
+    if (!name || !email || !phone || !user_subject || !message) {
         status.textContent = 'Please fill in all required fields.';
         status.className = 'error show';
         return;
@@ -35,7 +35,8 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
         return;
     }
 
-    if (subject.length < 5) {
+    // FIXED HERE ↓↓↓
+    if (user_subject.length < 5) {
         status.textContent = 'Subject must be at least 5 characters long.';
         status.className = 'error show';
         return;
@@ -47,7 +48,6 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
         return;
     }
 
-   
     const params = {
         name: name,
         email: email,
