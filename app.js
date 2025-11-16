@@ -10,6 +10,7 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
 
     status.className = "";
 
+    // VALIDATIONS ------------------------------
     if (!name || !email || !phone || !subject || !message) {
         status.textContent = 'Please fill in all required fields.';
         status.className = 'error show';
@@ -46,6 +47,7 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
         return;
     }
 
+    // EMAILJS SEND ------------------------------
     const params = {
         name: name,
         email: email,
@@ -56,20 +58,17 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
 
     emailjs.send("service_r8bg9em", "template_sq5wth5", params)
         .then(() => {
-            status.textContent = 'Message sent successfully! I will get back to you soon.';
+            status.textContent = 'Message sent successfully!';
             status.className = 'success show';
-
-            // Reset form
             document.getElementById("contactForm").reset();
-
-            // Clear status after 3 seconds
-            setTimeout(() => {
-                status.className = "";
-                status.textContent = "";
-            }, 3000);
         })
-        .catch((error) => {
+        .catch(() => {
             status.textContent = 'Failed to send message. Please try again.';
             status.className = 'error show';
         });
+
+    setTimeout(() => {
+        status.className = "";
+        status.textContent = "";
+    }, 4000);
 });
