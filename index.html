@@ -307,53 +307,58 @@
     <footer>
       <div id="contact">
         <h2>Contact Me</h2>
-          <div class="container">
-            <form
-              action="mailto:aniketkolhal28@gmail.com"
-              method="post"
-              enctype="text/plain"
-              id="contactForm"
-            >
-              <div class="form-row">
-                <input
-                  type="text"
-                  id="name" name="name"
-                  placeholder="Enter Your Name"
-                  required
-                />
-                <input
-                  type="email"
-                  id="email" name="email"
-                  placeholder="Enter Your Mail Id"
-                  required
-                />
-              </div>
-              <div class="form-row">
-                <input
-                  type="tel"
-                  id="phone" name="phone"
-                  placeholder="Enter Your Mobile Number"
-                  required
-                />
-                <input
-                  type="text"
-                  id="subject" name="subject"
-                  placeholder="Enter Subject Of The Mail"
-                  required
-                />
-              </div>
-              <textarea
-                id="message" name="message"
-                placeholder="Enter your message here..."
+        <div class="container">
+          <form id="contactForm" method="POST" autocomplete="on">
+            <div class="form-row">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter Your Name"
+                autocomplete="name"
                 required
-              ></textarea>
-              <button type="submit">Submit</button>
-            </form>
-
-            <div id="status"></div>
-          </div>
+              />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter Your Mail Id"
+                autocomplete="email"
+                required
+              />
+            </div>
+            <div class="form-row">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter Your Mobile Number"
+                autocomplete="tel"
+                required
+              />
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="Enter Subject Of The Mail"
+                autocomplete="off"
+                required
+              />
+            </div>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Enter your message here..."
+              required
+            ></textarea>
+            <button type="submit">Submit</button>
+          </form>
         </div>
-      
+      </div>
+
+          <div id="status"></div>
+        </div>
+      </div>
 
       <div class="contact-icons">
         <div class="icons">
