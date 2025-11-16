@@ -43,7 +43,15 @@
           with modern technologies.
         </p>
         <button id="connect-btn"><a href="#contact">Connect Me!</a></button>
-        <a class="resume" href="/Documents/Aniket_Kolhal_Resume.pdf" target="resume">Download Resume<i class="fa-solid fa-download" style="color: #fff"></i></a>
+        <a
+          class="resume"
+          href="/Documents/Aniket_Kolhal_Resume.pdf"
+          target="resume"
+          >Download Resume<i
+            class="fa-solid fa-download"
+            style="color: #fff"
+          ></i
+        ></a>
       </div>
       <div class="profile">
         <img id="img" src="imgs/ProfPic.png" alt="Profile_Pic" />
@@ -60,7 +68,6 @@
           <a class="icon" href="mailto:aniketkolhal28@gmail.com" target="email"
             ><i class="fa-solid fa-envelope" style="color: #fff"></i
           ></a>
-          
         </div>
       </div>
     </div>
@@ -300,32 +307,53 @@
     <footer>
       <div id="contact">
         <h2>Contact Me</h2>
-        <div class="container">
-          <form action="href=mailto:aniketkolhal28@gmail.com" method="post">
-            <div class="form-row">
-              <input type="text" placeholder="Enter Your Name" required />
-              <input type="email" placeholder="Enter Your Mail Id" required />
-            </div>
-            <div class="form-row">
-              <input
-                type="tel"
-                placeholder="Enter Your Mobile Number"
+          <div class="container">
+            <form
+              action="mailto:aniketkolhal28@gmail.com"
+              method="post"
+              enctype="text/plain"
+              id="contactForm"
+            >
+              <div class="form-row">
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Enter Your Name"
+                  required
+                />
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter Your Mail Id"
+                  required
+                />
+              </div>
+              <div class="form-row">
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder="Enter Your Mobile Number"
+                  required
+                />
+                <input
+                  type="text"
+                  id="subject"
+                  placeholder="Enter Subject Of The Mail"
+                  required
+                />
+              </div>
+              <textarea
+                id="message"
+                placeholder="Enter your message here..."
                 required
-              />
-              <input
-                type="text"
-                placeholder="Enter Subject Of The Mail"
-                required
-              />
-            </div>
-            <textarea
-              placeholder="Enter your message here..."
-              required
-            ></textarea>
-            <button type="submit">Submit</button>
-          </form>
+              ></textarea>
+              <button type="submit">Submit</button>
+            </form>
+
+            <div id="status"></div>
+          </div>
         </div>
-      </div>
+      
 
       <div class="contact-icons">
         <div class="icons">
