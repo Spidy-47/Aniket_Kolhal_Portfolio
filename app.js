@@ -8,7 +8,6 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
     const message = document.getElementById('message').value.trim();
     const status = document.getElementById('status');
 
-  
     status.className = "";
 
     if (!name || !email || !phone || !subject || !message) {
@@ -47,19 +46,30 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
         return;
     }
 
-    // SUCCESS
-    status.textContent = 'Thank you for reaching out! I will get back to you soon.';
-    status.className = 'success show';
+    const params = {
+        name: name,
+        email: email,
+        phone: phone,
+        subject: subject,
+        message: message
+    };
 
-    // Send email via mailto
-    event.target.submit();
+    emailjs.send("service_r8bg9em", "template_sq5wth5", params)
+        .then(() => {
+            status.textContent = 'Message sent successfully! I will get back to you soon.';
+            status.className = 'success show';
 
-    // Reset form fields
-    event.target.reset();
+            // Reset form
+            document.getElementById("contactForm").reset();
 
-    // Clear status after 3s (optional)
-    setTimeout(() => {
-        status.className = "";
-        status.textContent = "";
-    }, 3000);
+            // Clear status after 3 seconds
+            setTimeout(() => {
+                status.className = "";
+                status.textContent = "";
+            }, 3000);
+        })
+        .catch((error) => {
+            status.textContent = 'Failed to send message. Please try again.';
+            status.className = 'error show';
+        });
 });
