@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 body {
   background: linear-gradient(135deg, #020024, #090979, #00d4ff);
   color: #fff;
@@ -592,6 +597,7 @@ footer .msg {
 /* // Responsive Design for smaller screens */
 
 @media (max-width: 768px) {
+  
   .home {
     flex-direction: column;
     gap: 2rem;
@@ -654,4 +660,13 @@ footer .msg {
     gap: 1rem;
 }   
 
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+  h1 {
+    font-size: 28px;
+  }
 }
