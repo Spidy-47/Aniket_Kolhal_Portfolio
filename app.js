@@ -57,7 +57,6 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
     // Reset form fields
     event.target.reset();
 
-    // Clear status after 3s (optional)
     setTimeout(() => {
         status.className = "";
         status.textContent = "";
