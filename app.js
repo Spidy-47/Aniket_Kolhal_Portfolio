@@ -4,14 +4,14 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const phone = document.getElementById('phone').value.trim();
-    const user_subject = document.getElementById('subject').value.trim();
+    const subject = document.getElementById('subject').value.trim();
     const message = document.getElementById('message').value.trim();
     const status = document.getElementById('status');
 
+  
     status.className = "";
 
-    // Validation
-    if (!name || !email || !phone || !user_subject || !message) {
+    if (!name || !email || !phone || !subject || !message) {
         status.textContent = 'Please fill in all required fields.';
         status.className = 'error show';
         return;
@@ -35,7 +35,7 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
         return;
     }
 
-    if (user_subject.length < 5) {
+    if (subject.length < 5) {
         status.textContent = 'Subject must be at least 5 characters long.';
         status.className = 'error show';
         return;
@@ -47,29 +47,19 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
         return;
     }
 
-    const params = {
-        name: name,
-        email: email,
-        phone: phone,
-        user_subject: user_subject,
-        message: message
-    };
+    // SUCCESS
+    status.textContent = 'Thank you for reaching out! I will get back to you soon.';
+    status.className = 'success show';
 
-    // ⭐ YOUR CORRECT SERVICE + TEMPLATE ID HERE ⭐
-    emailjs.send("service_yf0xx49", "template_84l72rc", params)
+    // Send email via mailto
+    event.target.submit();
 
-        .then(() => {
-            status.textContent = 'Message sent successfully!';
-            status.className = 'success show';
-            document.getElementById("contactForm").reset();
-        })
-        .catch(() => {
-            status.textContent = 'Failed to send message. Please try again.';
-            status.className = 'error show';
-        });
+    // Reset form fields
+    event.target.reset();
 
+    // Clear status after 3s (optional)
     setTimeout(() => {
         status.className = "";
         status.textContent = "";
-    }, 4000);
+    }, 3000);
 });
