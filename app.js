@@ -57,6 +57,7 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
 
     // ⭐ YOUR CORRECT SERVICE + TEMPLATE ID HERE ⭐
     emailjs.send("service_yf0xx49", "template_84l72rc", params)
+
         .then(() => {
             status.textContent = 'Message sent successfully!';
             status.className = 'success show';
