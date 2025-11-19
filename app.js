@@ -47,7 +47,7 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
         return;
     }
 
-    // SUCCESS
+   
     status.textContent = 'Thank you for reaching out! I will get back to you soon.';
     status.className = 'success show';
 
@@ -60,5 +60,5 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
     setTimeout(() => {
         status.className = "";
         status.textContent = "";
-    }, 3000);
+    }, 2000);
 });
