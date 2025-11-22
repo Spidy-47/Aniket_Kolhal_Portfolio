@@ -1,4 +1,4 @@
-document.getElementById('contactForm').addEventListener('submit', (event) => {
+document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const name = document.getElementById('name').value.trim();
@@ -8,9 +8,9 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
     const message = document.getElementById('message').value.trim();
     const status = document.getElementById('status');
 
-  
     status.className = "";
 
+    // ---------- VALIDATION ----------
     if (!name || !email || !phone || !subject || !message) {
         status.textContent = 'Please fill in all required fields.';
         status.className = 'error show';
@@ -47,16 +47,26 @@ document.getElementById('contactForm').addEventListener('submit', (event) => {
         return;
     }
 
-   
-    status.textContent = 'Thank you for reaching out! I will get back to you soon.';
-    status.className = 'success show';
+    // ---------- EMAILJS SEND ----------
+    emailjs.send("service_684y3bt", "template_h88ijip", {
+        from_name: name,
+        from_email: email,
+        phone: phone,
+        subject: subject,
+        message: message
+    })
+    .then(() => {
+        status.textContent = '✅ Message sent successfully!';
+        status.className = 'success show';
+        document.getElementById('contactForm').reset();
+    })
+    .catch((error) => {
+        status.textContent = '❌ Failed to send message. Try again.';
+        status.className = 'error show';
+        console.error("EmailJS Error:", error);
+    });
 
-    // Send email via mailto
-    event.target.submit();
-
-    // Reset form fields
-    event.target.reset();
-
+    // Auto clear message
     setTimeout(() => {
         status.className = "";
         status.textContent = "";
