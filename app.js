@@ -1,53 +1,64 @@
-document.getElementById('contactForm').addEventListener('submit', function(event) {
+const form = document.getElementById('contactForm');
+const status = document.getElementById('status');
+const messageBox = document.getElementById('message');
+
+messageBox.addEventListener('keydown', (e) => {
+
+    if (e.key === 'Enter' && e.shiftKey) {
+        return;
+    }
+
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        form.requestSubmit();
+    }
+});
+
+
+form.addEventListener('submit', function(event) {
     event.preventDefault();
 
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
-    const status = document.getElementById('status');
+    const message = messageBox.value.trim();
 
-    status.className = "";
+    status.className = '';
+    status.textContent = '';
 
-    // ---------- VALIDATION ----------
+    // --- VALIDATION ---
     if (!name || !email || !phone || !subject || !message) {
-        status.textContent = 'Please fill in all required fields.';
-        status.className = 'error show';
+        showStatus('Please fill in all required fields.', 'error');
         return;
     }
 
     if (name.length < 3) {
-        status.textContent = 'Name must be at least 3 characters long.';
-        status.className = 'error show';
+        showStatus('Name must be at least 3 characters long.', 'error');
         return;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        status.textContent = 'Enter a valid email address.';
-        status.className = 'error show';
+        showStatus('Enter a valid email address.', 'error');
         return;
     }
 
     if (!/^[0-9]{10}$/.test(phone)) {
-        status.textContent = 'Phone must be 10 digits.';
-        status.className = 'error show';
+        showStatus('Phone must be 10 digits.', 'error');
         return;
     }
 
     if (subject.length < 5) {
-        status.textContent = 'Subject must be at least 5 characters long.';
-        status.className = 'error show';
+        showStatus('Subject must be at least 5 characters long.', 'error');
         return;
     }
 
     if (message.length < 10) {
-        status.textContent = 'Message must be at least 10 characters long.';
-        status.className = 'error show';
+        showStatus('Message must be at least 10 characters long.', 'error');
         return;
     }
 
-    // ---------- EMAILJS SEND ----------
+    // --- EMAILJS SEND ---
     emailjs.send("service_684y3bt", "template_h88ijip", {
         from_name: name,
         from_email: email,
@@ -56,19 +67,22 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         message: message
     })
     .then(() => {
-        status.textContent = '✅ Message sent successfully!';
-        status.className = 'success show';
-        document.getElementById('contactForm').reset();
+        showStatus('✅ Message sent successfully!', 'success');
+        form.reset();
     })
     .catch((error) => {
-        status.textContent = '❌ Failed to send message. Try again.';
-        status.className = 'error show';
-        console.error("EmailJS Error:", error);
+        showStatus('❌ Failed to send message. Try again.', 'error');
+        console.error('EmailJS Error:', error);
     });
-
-    // Auto clear message
-    setTimeout(() => {
-        status.className = "";
-        status.textContent = "";
-    }, 2000);
 });
+
+
+function showStatus(text, type) {
+    status.textContent = text;
+    status.className = `${type} show`;
+
+    setTimeout(() => {
+        status.className = '';
+        status.textContent = '';
+    }, 2000);
+}
